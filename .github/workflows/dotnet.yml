@@ -21,8 +21,10 @@ jobs:
       with:
         dotnet-version: 9.0.x
     - name: Restore dependencies
-      run: dotnet restore visus.AppHost/
+      run: dotnet restore
+    - name: Format
+      run: dotnet format --verify-no-changes --verbosity diagnostic
     - name: Build
-      run: dotnet build visus.AppHost/ --no-restore
+      run: dotnet build --no-restore -p:TreatWarningsAsErrors=true
     - name: Test
-      run: dotnet test visus.AppHost/ --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal

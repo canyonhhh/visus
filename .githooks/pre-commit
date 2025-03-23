@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+echo "Running dotnet format before commit..."
+dotnet format ./visus.sln
+
+# Stage the changes
+git update-index --again
