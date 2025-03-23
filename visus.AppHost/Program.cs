@@ -3,7 +3,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var apiService = builder.AddProject<Projects.visus_ApiService>("apiservice")
     .WithExternalHttpEndpoints();
 
-builder.AddNpmApp("react", "../visus.Frontend")
+builder.AddNpmApp("webfrontend", "../visus.Frontend")
     .WithReference(apiService)
     .WaitFor(apiService)
     .WithEnvironment("BROWSER", "none") // Disable opening browser on npm start
