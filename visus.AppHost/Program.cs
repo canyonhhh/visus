@@ -1,7 +1,16 @@
+using Projects;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.visus_ApiService>("apiservice")
+var postgres = builder.AddPostgres("postgres").WithDataVolume(isReadOnly: false);
+var postgresdb = postgres.AddDatabase("postgresdb");
+
+var apiService = builder.AddProject<Projects.visus_ApiService>("apiservice").WithReference(postgresdb)
     .WithExternalHttpEndpoints();
+
+builder.AddProject<visus_MigrationService>("migrations")
+    .WithReference(postgresdb)
+    .WaitFor(postgresdb);
 
 builder.AddNpmApp("webfrontend", "../visus.Frontend")
     .WithReference(apiService)
