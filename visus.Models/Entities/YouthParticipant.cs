@@ -7,11 +7,9 @@ namespace visus.Models.Entities
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        public string FirstName { get; set; }
+        public required string FirstName { get; set; }
 
-        [Required]
-        public string LastName { get; set; }
+        public required string LastName { get; set; }
 
         public DateTime RegistrationDate { get; set; } = DateTime.Now;
     }
