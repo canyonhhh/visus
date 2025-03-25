@@ -13,11 +13,13 @@
 
     <ItemGroup>
         <ProjectReference Include="..\visus.ApiService\visus.ApiService.csproj"/>
+        <ProjectReference Include="..\visus.MigrationService\visus.MigrationService.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0"/>
         <PackageReference Include="Aspire.Hosting.NodeJs" Version="9.1.0" />
+        <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.1.0" />
     </ItemGroup>
 
 </Project>

@@ -7,11 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\visus.Data\visus.Data.csproj" />
         <ProjectReference Include="..\visus.ServiceDefaults\visus.ServiceDefaults.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.1.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+      <Folder Include="Services\Interfaces\" />
     </ItemGroup>
 
 </Project>
