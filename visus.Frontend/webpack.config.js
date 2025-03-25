@@ -4,7 +4,7 @@ module.exports = (env) => {
   return {
     entry: "./src/index.js",
     devServer: {
-      port: env.PORT || 4001,
+      port: env.PORT || 5468,
       allowedHosts: "all",
       proxy: [
         {
