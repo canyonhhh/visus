@@ -1,10 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
 using OpenTelemetry.Trace;
 using System.Diagnostics;
 using visus.Data.Contexts;
-using visus.Models.Entities;
 
 namespace visus.MigrationService;
 
@@ -25,7 +22,6 @@ public class Worker(
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
             await RunMigrationAsync(dbContext, cancellationToken);
-            await SeedDataAsync(dbContext, cancellationToken);
         }
         catch (Exception ex)
         {
@@ -43,25 +39,6 @@ public class Worker(
         {
             // Run migration in a transaction to avoid partial migration if it fails.
             await dbContext.Database.MigrateAsync(cancellationToken);
-        });
-    }
-
-    private static async Task SeedDataAsync(AppDbContext dbContext, CancellationToken cancellationToken)
-    {
-        YouthParticipant participant = new()
-        {
-            FirstName = "John",
-            LastName = "Doe"
-        };
-
-        var strategy = dbContext.Database.CreateExecutionStrategy();
-        await strategy.ExecuteAsync(async () =>
-        {
-            // Seed the database
-            await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
-            await dbContext.YouthParticipants.AddAsync(participant, cancellationToken);
-            await dbContext.SaveChangesAsync(cancellationToken);
-            await transaction.CommitAsync(cancellationToken);
         });
     }
 }
