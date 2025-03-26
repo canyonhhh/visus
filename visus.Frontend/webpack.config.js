@@ -1,21 +1,24 @@
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (env) => {
+  // Get API URL from environment with fallback
+  const apiTarget = process.env.services__api__https__0 ||
+      process.env.services__api__http__0 ||
+      "https://localhost:7548";
+
   return {
     entry: "./src/index.js",
     devServer: {
       port: env.PORT || 5468,
       allowedHosts: "all",
-      proxy: [
-        {
-          context: ["/api"],
-          target:
-            process.env.services__api__https__0 ||
-            process.env.services__api__http__0,
-          pathRewrite: { "^/api": "" },
-          secure: false,
-        },
-      ],
+      historyApiFallback: true,
+      proxy: [{
+        context: ['/api'],
+        target: apiTarget,
+        pathRewrite: { "^/api": "" },
+        secure: false,
+        changeOrigin: true
+      }]
     },
     output: {
       path: `${__dirname}/dist`,

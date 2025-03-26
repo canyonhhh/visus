@@ -4,7 +4,7 @@ using visus.ApiService.Services.Interfaces;
 namespace visus.ApiService.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class RandomNumberController : ControllerBase
     {
         private readonly IRandomNumberService _randomNumberService;
