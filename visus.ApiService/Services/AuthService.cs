@@ -42,9 +42,9 @@ namespace visus.ApiService.Services
             if (result.Succeeded)
             {
                 await EnsureRoleExistsAsync(user.Role);
-                
+
                 await _userManager.AddToRoleAsync(user, RoleHelper.GetRoleName(user.Role));
-                
+
                 return (true, Array.Empty<string>());
             }
 
@@ -100,7 +100,7 @@ namespace visus.ApiService.Services
             }
 
             user.Role = role;
-            
+
             await EnsureRoleExistsAsync(role);
 
             var currentRoles = await _userManager.GetRolesAsync(user);
@@ -110,9 +110,9 @@ namespace visus.ApiService.Services
             }
 
             var result = await _userManager.AddToRoleAsync(user, RoleHelper.GetRoleName(role));
-            
+
             await _userManager.UpdateAsync(user);
-            
+
             return result.Succeeded;
         }
 
@@ -126,21 +126,21 @@ namespace visus.ApiService.Services
 
             return user.Role;
         }
-        
+
         private async Task EnsureRoleExistsAsync(UserRole role)
         {
             string roleName = RoleHelper.GetRoleName(role);
-            
+
             if (!await _roleManager.RoleExistsAsync(roleName))
             {
                 await _roleManager.CreateAsync(new IdentityRole(roleName));
             }
         }
-        
+
         private async Task<string> GenerateJwtToken(User user)
         {
             await EnsureRoleExistsAsync(user.Role);
-            
+
             var claims = new List<Claim>
             {
                 new(ClaimTypes.NameIdentifier, user.Id),
@@ -159,13 +159,13 @@ namespace visus.ApiService.Services
                 claims.Add(new Claim(ClaimTypes.Surname, user.LastName));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"] ?? "YourTemporarySecretKey123456789012345678901234"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(double.Parse(_configuration["JWT:ExpirationInDays"] ?? "1"));
+            var expires = DateTime.Now.AddDays(double.Parse(_configuration["JWT:ExpirationInDays"]));
 
             var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"] ?? "https://localhost",
-                audience: _configuration["JWT:ValidAudience"] ?? "https://localhost",
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
                 claims: claims,
                 expires: expires,
                 signingCredentials: creds

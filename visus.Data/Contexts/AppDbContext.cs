@@ -14,7 +14,7 @@ namespace visus.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // This is important for Identity tables
-            
+
             // Apply UTC converter to all DateTime properties
             var dateTimeConverter = DateTimeUtcConverter.Create();
 
