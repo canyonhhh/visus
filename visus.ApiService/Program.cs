@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using visus.Data.Contexts;
 using visus.ApiService.Services;
 using visus.ApiService.Services.Interfaces;
+using visus.Data.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
