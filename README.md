@@ -101,7 +101,7 @@ The project includes Git hooks for code formatting:
 
 - Pre-commit hook: Runs `dotnet format` to ensure consistent code style
 
+To install Husky:
 ```bash
-git config core.hooksPath .githooks
-chmod +x .githooks/pre-commit
+dotnet tool restore
 ```
