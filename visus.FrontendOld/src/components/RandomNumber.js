@@ -25,7 +25,9 @@ function RandomNumber() {
 
     return (
         <div>
-            <h1>Random Number: {number !== null ? number : "Loading..."}</h1>
+            <h1 className="text-xl font-bold underline">
+                Random Number: {number !== null ? number : "Loading..."}
+            </h1>
         </div>
     );
 }
