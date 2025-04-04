@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
+import RegisterPage from "../pages/RegisterPage";
 
 const AppRouter = () => {
     return (
@@ -13,7 +13,7 @@ const AppRouter = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route path="/register" element={<RegisterPage />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
             </div>
