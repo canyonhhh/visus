@@ -48,7 +48,7 @@ namespace visus.ApiService.Services
             return (true, token, Array.Empty<string>());
         }
 
-        public async Task<(bool Succeeded, string[] Errors)> ForgotPasswordAsync(string email)
+        public Task<(bool Succeeded, string[] Errors)> ForgotPasswordAsync(string email)
         {
             // TODO : Implement email sending logic
             throw new NotImplementedException("Email sending is not implemented yet.");
@@ -67,7 +67,8 @@ namespace visus.ApiService.Services
             */
         }
 
-        public async Task<(bool Succeeded, string[] Errors)> ResetPasswordAsync(string userId, string token, string newPassword)
+        public async Task<(bool Succeeded, string[] Errors)> ResetPasswordAsync(string userId, string token,
+            string newPassword)
         {
             var user = await _userRepository.GetByIdAsync(userId);
             if (user == null)
@@ -79,7 +80,8 @@ namespace visus.ApiService.Services
             return (result.Succeeded, result.Errors.Select(e => e.Description).ToArray());
         }
 
-        public async Task<(bool Succeeded, string[] Errors)> ChangePasswordAsync(string userId, string currentPassword, string newPassword)
+        public async Task<(bool Succeeded, string[] Errors)> ChangePasswordAsync(string userId, string currentPassword,
+            string newPassword)
         {
             var user = await _userRepository.GetByIdAsync(userId);
             if (user == null)
@@ -119,10 +121,12 @@ namespace visus.ApiService.Services
             }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"] ??
-                                                                      throw new ArgumentException("JWT:Secret is not configured")));
+                                                                      throw new ArgumentException(
+                                                                          "JWT:Secret is not configured")));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddDays(double.Parse(_configuration["JWT:ExpirationInDays"] ??
-                                                            throw new ArgumentException("JWT:ExpirationInDays is not configured")));
+                                                            throw new ArgumentException(
+                                                                "JWT:ExpirationInDays is not configured")));
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
