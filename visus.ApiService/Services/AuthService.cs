@@ -159,9 +159,9 @@ namespace visus.ApiService.Services
                 claims.Add(new Claim(ClaimTypes.Surname, user.LastName));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])) ?? throw new ArgumentNullException("JWT:Secret is not configured");
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(double.Parse(_configuration["JWT:ExpirationInDays"]));
+            var expires = DateTime.Now.AddDays(double.Parse(_configuration["JWT:ExpirationInDays"] ?? throw new ArgumentNullException("JWT:ExpirationInDays is not configured")));
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
