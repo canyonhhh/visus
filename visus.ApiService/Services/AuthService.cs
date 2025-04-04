@@ -52,19 +52,19 @@ namespace visus.ApiService.Services
         {
             // TODO : Implement email sending logic
             throw new NotImplementedException("Email sending is not implemented yet.");
-            
-/*
-            var user = await _userRepository.GetByEmailAsync(email);
-            if (user == null)
-            {
-                return (true, Array.Empty<string>());
-            }
 
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            /*
+                        var user = await _userRepository.GetByEmailAsync(email);
+                        if (user == null)
+                        {
+                            return (true, Array.Empty<string>());
+                        }
+
+                        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
 
-            return (true, Array.Empty<string>());
-*/
+                        return (true, Array.Empty<string>());
+            */
         }
 
         public async Task<(bool Succeeded, string[] Errors)> ResetPasswordAsync(string userId, string token, string newPassword)
