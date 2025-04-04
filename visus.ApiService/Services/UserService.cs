@@ -81,7 +81,7 @@ namespace visus.ApiService.Services
             };
 
             var (succeeded, errors) = await userRepository.CreateAsync(user, model.Password);
-            
+
             if (succeeded)
             {
                 // Assign the default role
@@ -101,7 +101,7 @@ namespace visus.ApiService.Services
             user.LastName = model.LastName;
             user.Email = model.Email;
             user.UserName = model.Email; // Keep username and email in sync
-            
+
             // Update role if changed
             var currentRole = await userRepository.GetUserRoleAsync(user);
             if (currentRole == model.Role)
@@ -158,7 +158,7 @@ namespace visus.ApiService.Services
             // Add to new role
             user.Role = newRole;
             var result = await userRepository.AddToRoleAsync(user, newRole);
-            
+
             if (result.Succeeded)
             {
                 await userRepository.UpdateAsync(user);

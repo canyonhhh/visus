@@ -52,10 +52,10 @@ namespace visus.Data.Repositories
         public async Task<(bool Succeeded, string[] Errors)> AddToRoleAsync(User user, UserRole role)
         {
             await EnsureRoleExistsAsync(role);
-            
+
             var roleName = RoleHelper.GetRoleName(role);
             var result = await userManager.AddToRoleAsync(user, roleName);
-            
+
             return (result.Succeeded, result.Errors.Select(e => e.Description).ToArray());
         }
 
@@ -63,7 +63,7 @@ namespace visus.Data.Repositories
         {
             var roleName = RoleHelper.GetRoleName(role);
             var result = await userManager.RemoveFromRoleAsync(user, roleName);
-            
+
             return (result.Succeeded, result.Errors.Select(e => e.Description).ToArray());
         }
 
