@@ -52,7 +52,8 @@ namespace visus.ApiService.Services
         {
             // TODO : Implement email sending logic
             throw new NotImplementedException("Email sending is not implemented yet.");
-
+            
+/*
             var user = await _userRepository.GetByEmailAsync(email);
             if (user == null)
             {
@@ -63,6 +64,7 @@ namespace visus.ApiService.Services
 
 
             return (true, Array.Empty<string>());
+*/
         }
 
         public async Task<(bool Succeeded, string[] Errors)> ResetPasswordAsync(string userId, string token, string newPassword)
