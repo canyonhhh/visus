@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+/*All the custom variables go here*/
+
+@theme {
+    --color-primary: #76AFC0;
+}

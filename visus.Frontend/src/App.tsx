@@ -1,13 +1,10 @@
-import RandomNumber from "./components/RandomNumber";
+// import RandomNumber from "./components/RandomNumber";
+// import Navbar from "./components/Navbar";
+import AppRouter from "./routes/Router";
 
 
 function App() {
-    return (
-        <div>
-            <h1>Random Number Generator</h1>
-            <RandomNumber />
-        </div>
-    );
+    return <AppRouter />;
 }
 
 export default App
