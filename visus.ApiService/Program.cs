@@ -6,6 +6,8 @@ using System.Text;
 using visus.ApiService.Services;
 using visus.ApiService.Services.Interfaces;
 using visus.Data.Contexts;
+using visus.Data.Repositories;
+using visus.Data.Repositories.Interfaces;
 using visus.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,10 +55,10 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"] ?? throw new ArgumentNullException("JWT:ValidIssuer is not configured"),
-        ValidAudience = builder.Configuration["JWT:ValidAudience"] ?? throw new ArgumentNullException("JWT:ValidAudience is not configured"),
+        ValidIssuer = builder.Configuration["JWT:ValidIssuer"] ?? throw new ArgumentException("JWT:ValidIssuer is not configured"),
+        ValidAudience = builder.Configuration["JWT:ValidAudience"] ?? throw new ArgumentException("JWT:ValidAudience is not configured"),
         IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"] ?? throw new ArgumentNullException("JWT:Secret is not configured"))),
+            Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"] ?? throw new ArgumentException("JWT:Secret is not configured"))),
     };
 });
 
@@ -65,8 +67,13 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddOpenApi();
 
+// Register Repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// Register Services
 builder.Services.AddScoped<IRandomNumberService, RandomNumberService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddControllers();
 
