@@ -1,20 +1,28 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Home from "../pages/Home";
-import Contact from "../pages/Contact";
-import Login from "../pages/Login";
+import PublicPage from "../pages/PublicPage";
+import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-
+import ProtectedRoute from "./ProtectedRoute"
+import HomePage from "../pages/HomePage"
+import AnalyticsPage from "../pages/AnalyticsPage"
+import ParticipantsPage from "../pages/ParticipantsPage"
+import QrcodePage from "../pages/QrcodePage"
+import StatisticsPage from "../pages/StatisticsPage"
 const AppRouter = () => {
     return (
         <Router>
-            <Navbar />
             <div >
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<PublicPage />} />
+                    <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/contact" element={<Contact />} />
+                    <Route element={<ProtectedRoute />}>
+                        <Route path="/home" element={<HomePage />} />
+                        <Route path="/analytics" element={<AnalyticsPage />} />
+                        <Route path="/participants" element={<ParticipantsPage />} />
+                        <Route path="/qrcode" element={<QrcodePage />} />
+                        <Route path="/statistics" element={<StatisticsPage />} />
+                    </Route>
                 </Routes>
             </div>
         </Router>

@@ -1,4 +1,4 @@
-const Contact = () => {
+const Home = () => {
     return (
         <section className="py-16 text-center">
             <h1 className="text-4xl font-bold">Contact Us</h1>
@@ -6,4 +6,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+export default Home;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react"; // Icons for mobile menu
 
-const Navbar = () => {
+const PublicNavbar = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
@@ -38,4 +38,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default PublicNavbar;
