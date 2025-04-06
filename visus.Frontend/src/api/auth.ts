@@ -1,6 +1,4 @@
-// /src/api/auth.ts
-
-// /src/api/auth.ts
+import { useNavigate } from 'react-router-dom';
 
 interface Login {
     token: string;
@@ -22,4 +20,16 @@ export const login = async (email: string, password: string, rememberMe: boolean
     // fix up the errors according to the message gotten
     const data: Login = await response.json();
     return data;
+};
+
+export const useLogout = () => {
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
+        navigate('/');
+    };
+
+    return logout;
 };

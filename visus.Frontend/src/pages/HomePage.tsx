@@ -4,7 +4,7 @@ const HomePage = () => {
         <>
             <UserNavbar />
         <section className="py-16 text-center">
-            <h1 className="text-4xl font-bold">Secret page only cool can come to</h1>
+            <h1 className="text-4xl font-bold">Homepage</h1>
         </section>
         </>
             );

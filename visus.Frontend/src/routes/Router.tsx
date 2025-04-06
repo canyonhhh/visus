@@ -8,6 +8,7 @@ import AnalyticsPage from "../pages/AnalyticsPage"
 import ParticipantsPage from "../pages/ParticipantsPage"
 import QrcodePage from "../pages/QrcodePage"
 import StatisticsPage from "../pages/StatisticsPage"
+import SecretPage from "../pages/SecretPage"
 const AppRouter = () => {
     return (
         <Router>
@@ -22,6 +23,9 @@ const AppRouter = () => {
                         <Route path="/participants" element={<ParticipantsPage />} />
                         <Route path="/qrcode" element={<QrcodePage />} />
                         <Route path="/statistics" element={<StatisticsPage />} />
+                    </Route>
+                    <Route element={<ProtectedRoute requiredRole="SYSTEM" />}>
+                        <Route path="/secret" element={<SecretPage />} />
                     </Route>
                 </Routes>
             </div>
