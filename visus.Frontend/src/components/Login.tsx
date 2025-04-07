@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth"; // Import the login function
+import FeedbackMessage from "./FeedbackMessage";
 
 interface FormData {
     email: string;
@@ -50,6 +51,7 @@ const Login: React.FC = () => {
             }
             setSuccess(true);
             navigate("/home");  // Go to the home page
+            
         } catch (error) {
             setError(error instanceof Error ? error.message : "Something went wrong");
         } finally {
@@ -61,11 +63,13 @@ const Login: React.FC = () => {
         <div className="max-w-sm mx-auto my-4 p-4 bg-white shadow-md rounded">
             <h2 className="text-xl font-bold mb-4">Login</h2>
             {success && (
-                <div className="mb-4 text-green-600">Login successful!</div>
+                <div className="mb-4">
+                    <FeedbackMessage type="success" message={"Log in was succesfull!"} />
+                </div>
             )}
             {error && (
-                <div className="mb-4 text-red-600">
-                    <strong>Error:</strong> {error}
+                <div className="mb-4">
+                    <FeedbackMessage type="error" message={error} />
                 </div>
             )}
             <form onSubmit={handleSubmit}>

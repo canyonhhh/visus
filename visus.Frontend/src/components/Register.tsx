@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import FeedbackMessage from "./FeedbackMessage";
 
 interface FormData {
   email: string;
@@ -41,6 +42,8 @@ const Register: React.FC = () => {
     setError(null);
 
     try {
+      setSuccess(false);
+      setError(null);
       const response = await fetch("/api/User", {
         method: "POST",
         headers: {
@@ -50,14 +53,26 @@ const Register: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Registration failed");
+        const data = await response.json().catch(() => null);
+
+        let errorMessage = "Registration failed";
+
+        if (data?.errors && Array.isArray(data.errors)) {
+          errorMessage = data.errors.join(" ");
+        } else if (data?.message) {
+          errorMessage = data.message;
+        }
+
+        throw new Error(errorMessage);
       }
+
 
       setSuccess(true);
     } catch (error) {
       setError(error instanceof Error ? error.message : "Something went wrong");
     } finally {
       setLoading(false);
+      
     }
   };
 
@@ -65,13 +80,13 @@ const Register: React.FC = () => {
     <div className="max-w-sm mx-auto my-4 p-4 bg-white shadow-md rounded">
       <h2 className="text-xl font-bold mb-4">Register</h2>
       {success && (
-        <div className="mb-4 text-green-600">
-          Registration successful! Please check your email for verification.
+        <div className="mb-4">
+          <FeedbackMessage type="success" message={"Successfully registered! Go to the login page."} />
         </div>
       )}
       {error && (
-        <div className="mb-4 text-red-600">
-          <strong>Error:</strong> {error}
+        <div className="mb-4">
+          <FeedbackMessage type="error" message={error} />
         </div>
       )}
       <form onSubmit={handleSubmit}>
