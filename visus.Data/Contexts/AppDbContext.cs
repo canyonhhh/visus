@@ -10,6 +10,8 @@ namespace visus.Data.Contexts
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
+        
+        public DbSet<Organization> Organizations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

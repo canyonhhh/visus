@@ -9,5 +9,10 @@ namespace visus.Models.Entities
         public string? LastName { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public UserRole Role { get; set; }
+        
+        public string? OrganizationId { get; set; }
+        
+        // Navigation Property
+        public Organization? Organization { get; set; }
     }
 }
