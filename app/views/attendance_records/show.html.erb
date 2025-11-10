@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @attendance_record %>
+
+<div>
+  <%= link_to "Edit this attendance record", edit_attendance_record_path(@attendance_record) %> |
+  <%= link_to "Back to attendance records", attendance_records_path %>
+
+  <%= button_to "Destroy this attendance record", @attendance_record, method: :delete %>
+</div>

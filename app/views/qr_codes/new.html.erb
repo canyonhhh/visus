@@ -1,0 +1,11 @@
+<% content_for :title, "New qr code" %>
+
+<h1>New qr code</h1>
+
+<%= render "form", qr_code: @qr_code %>
+
+<br>
+
+<div>
+  <%= link_to "Back to qr codes", qr_codes_path %>
+</div>

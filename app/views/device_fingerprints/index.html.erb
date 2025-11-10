@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Device fingerprints" %>
+
+<h1>Device fingerprints</h1>
+
+<div id="device_fingerprints">
+  <% @device_fingerprints.each do |device_fingerprint| %>
+    <%= render device_fingerprint %>
+    <p>
+      <%= link_to "Show this device fingerprint", device_fingerprint %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New device fingerprint", new_device_fingerprint_path %>

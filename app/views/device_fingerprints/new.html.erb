@@ -1,0 +1,11 @@
+<% content_for :title, "New device fingerprint" %>
+
+<h1>New device fingerprint</h1>
+
+<%= render "form", device_fingerprint: @device_fingerprint %>
+
+<br>
+
+<div>
+  <%= link_to "Back to device fingerprints", device_fingerprints_path %>
+</div>

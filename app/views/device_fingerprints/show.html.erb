@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @device_fingerprint %>
+
+<div>
+  <%= link_to "Edit this device fingerprint", edit_device_fingerprint_path(@device_fingerprint) %> |
+  <%= link_to "Back to device fingerprints", device_fingerprints_path %>
+
+  <%= button_to "Destroy this device fingerprint", @device_fingerprint, method: :delete %>
+</div>
