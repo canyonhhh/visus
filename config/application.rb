@@ -36,5 +36,9 @@ module Visus
         request_specs: true
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+
+    config.generators do |g|
+      g.jbuilder false
+    end
   end
 end
