@@ -25,14 +25,6 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def update
-    if @activity.update(activity_params)
-      redirect_to @activity, notice: "Activity was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @activity.destroy!
 

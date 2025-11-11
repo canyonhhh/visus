@@ -25,14 +25,6 @@ class BusinessesController < ApplicationController
     end
   end
 
-  def update
-    if @business.update(business_params)
-      redirect_to @business, notice: "Business was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @business.destroy!
 

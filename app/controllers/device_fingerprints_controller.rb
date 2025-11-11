@@ -25,14 +25,6 @@ class DeviceFingerprintsController < ApplicationController
     end
   end
 
-  def update
-    if @device_fingerprint.update(device_fingerprint_params)
-      redirect_to @device_fingerprint, notice: "Device fingerprint was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @device_fingerprint.destroy!
 

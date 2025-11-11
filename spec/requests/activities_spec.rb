@@ -83,15 +83,26 @@ RSpec.describe "/activities", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) do
+        {
+          name: "PE",
+          description: "Do sports",
+          is_active: false,
+          business_id: business.id
+        }
+      end
 
       it "updates the requested activity" do
-        activity = Activity.create! valid_attributes
+        activity = Activity.create!(valid_attributes)
         patch activity_url(activity), params: { activity: new_attributes }
         activity.reload
-        skip("Add assertions for updated state")
+
+        expect(activity).to have_attributes(
+          name: "PE",
+          description: "Do sports",
+          is_active: false,
+          business_id: business.id
+        )
       end
 
       it "redirects to the activity" do

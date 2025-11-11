@@ -67,36 +67,6 @@ RSpec.describe "/device_fingerprints", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested device_fingerprint" do
-        device_fingerprint = DeviceFingerprint.create! valid_attributes
-        patch device_fingerprint_url(device_fingerprint), params: { device_fingerprint: new_attributes }
-        device_fingerprint.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the device_fingerprint" do
-        device_fingerprint = DeviceFingerprint.create! valid_attributes
-        patch device_fingerprint_url(device_fingerprint), params: { device_fingerprint: new_attributes }
-        device_fingerprint.reload
-        expect(response).to redirect_to(device_fingerprint_url(device_fingerprint))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        device_fingerprint = DeviceFingerprint.create! valid_attributes
-        patch device_fingerprint_url(device_fingerprint), params: { device_fingerprint: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_content)
-      end
-    end
-  end
-
   describe "DELETE /destroy" do
     it "destroys the requested device_fingerprint" do
       device_fingerprint = DeviceFingerprint.create! valid_attributes

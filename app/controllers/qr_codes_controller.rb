@@ -25,14 +25,6 @@ class QrCodesController < ApplicationController
     end
   end
 
-  def update
-    if @qr_code.update(qr_code_params)
-      redirect_to @qr_code, notice: "Qr code was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @qr_code.destroy!
 

@@ -25,14 +25,6 @@ class StudentsController < ApplicationController
     end
   end
 
-  def update
-    if @student.update(student_params)
-      redirect_to @student, notice: "Student was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @student.destroy!
 

@@ -25,14 +25,6 @@ class EmployeesController < ApplicationController
     end
   end
 
-  def update
-    if @employee.update(employee_params)
-      redirect_to @employee, notice: "Employee was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @employee.destroy!
 

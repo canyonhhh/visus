@@ -79,36 +79,6 @@ RSpec.describe "/attendance_records", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested attendance_record" do
-        attendance_record = AttendanceRecord.create! valid_attributes
-        patch attendance_record_url(attendance_record), params: { attendance_record: new_attributes }
-        attendance_record.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the attendance_record" do
-        attendance_record = AttendanceRecord.create! valid_attributes
-        patch attendance_record_url(attendance_record), params: { attendance_record: new_attributes }
-        attendance_record.reload
-        expect(response).to redirect_to(attendance_record_url(attendance_record))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        attendance_record = AttendanceRecord.create! valid_attributes
-        patch attendance_record_url(attendance_record), params: { attendance_record: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_content)
-      end
-    end
-  end
-
   describe "DELETE /destroy" do
     it "destroys the requested attendance_record" do
       attendance_record = AttendanceRecord.create! valid_attributes

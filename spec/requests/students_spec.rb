@@ -65,36 +65,6 @@ RSpec.describe "/students", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested student" do
-        student = Student.create! valid_attributes
-        patch student_url(student), params: { student: new_attributes }
-        student.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the student" do
-        student = Student.create! valid_attributes
-        patch student_url(student), params: { student: new_attributes }
-        student.reload
-        expect(response).to redirect_to(student_url(student))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        student = Student.create! valid_attributes
-        patch student_url(student), params: { student: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_content)
-      end
-    end
-  end
-
   describe "DELETE /destroy" do
     it "destroys the requested student" do
       student = Student.create! valid_attributes

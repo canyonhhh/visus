@@ -65,36 +65,6 @@ RSpec.describe "/businesses", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested business" do
-        business = Business.create! valid_attributes
-        patch business_url(business), params: { business: new_attributes }
-        business.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the business" do
-        business = Business.create! valid_attributes
-        patch business_url(business), params: { business: new_attributes }
-        business.reload
-        expect(response).to redirect_to(business_url(business))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        business = Business.create! valid_attributes
-        patch business_url(business), params: { business: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_content)
-      end
-    end
-  end
-
   describe "DELETE /destroy" do
     it "destroys the requested business" do
       business = Business.create! valid_attributes

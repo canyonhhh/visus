@@ -25,14 +25,6 @@ class AttendanceRecordsController < ApplicationController
     end
   end
 
-  def update
-    if @attendance_record.update(attendance_record_params)
-      redirect_to @attendance_record, notice: "Attendance record was successfully updated.", status: :see_other
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     @attendance_record.destroy!
 
